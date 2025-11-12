@@ -1,13 +1,18 @@
-import { useState } from 'react'
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { StrictMode } from 'react';
+import { Layout } from '../components/Layout';
+import { HomePage } from '../components/HomePage';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-    </>
-  )
+    <StrictMode>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </StrictMode>
+  );
 }
-
-export default App
