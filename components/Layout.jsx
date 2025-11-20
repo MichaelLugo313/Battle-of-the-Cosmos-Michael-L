@@ -1,6 +1,32 @@
 import { NavLink } from "react-router-dom";
+import { Moon, Sun } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export function Layout({ children }) {
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Load dark mode preference from localStorage on mount
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(savedDarkMode);
+    if (savedDarkMode) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem('darkMode', newDarkMode.toString());
+    
+    if (newDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
   return (
     <div className="app-container">
       {/* Header - Outside wrapper for consistent alignment */}
@@ -80,6 +106,11 @@ export function Layout({ children }) {
               }
             </NavLink>
           </nav>
+
+          {/* Dark Mode Toggle */}
+          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+            {darkMode ? <Moon /> : <Sun />}
+          </button>
         </div>
       </div>
       
