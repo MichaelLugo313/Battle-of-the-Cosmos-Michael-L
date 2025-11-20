@@ -66,7 +66,7 @@ export function ContactPage() {
           <h3>Other Ways to Reach Us</h3>
           <div className="contact-details">
             <p>
-              <strong>Email:</strong> contact@battleofthecosmos.com
+              <strong>Email:</strong> thebattleofthecosmos@gmail.com
             </p>
             <p>
               <strong>Response Time:</strong> We typically respond within 24-48 hours
