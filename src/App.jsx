@@ -5,7 +5,7 @@ import { HomePage } from '../components/HomePage';
 import { SavePage } from '../components/SavePage';
 import { LoadPage } from '../components/LoadPage';
 import { AboutPage } from '../components/AboutPage';
-
+import { ContactPage } from '../components/ContactPage';
 
 export default function App() {
   return (
@@ -17,6 +17,7 @@ export default function App() {
             <Route path="/save" element={<SavePage />} />
             <Route path="/load" element={<LoadPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </Layout>
       </BrowserRouter>
