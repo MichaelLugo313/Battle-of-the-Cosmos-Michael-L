@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route, HashRouter } from 'react-router-dom';
 import { StrictMode } from 'react';
 import { Layout } from '../components/Layout';
 import { HomePage } from '../components/HomePage';
@@ -10,7 +10,7 @@ import { ContactPage } from '../components/ContactPage';
 export default function App() {
   return (
     <StrictMode>
-      <BrowserRouter>
+      <HashRouter>
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -20,7 +20,7 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     </StrictMode>
   );
 }
