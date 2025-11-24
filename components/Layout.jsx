@@ -11,6 +11,17 @@ export function Layout({ children }) {
     setDarkMode(savedDarkMode);
   }, []);
 
+  // Apply dark mode to html element for full page coverage
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   // Toggle dark mode
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
@@ -19,7 +30,7 @@ export function Layout({ children }) {
   };
 
   return (
-    <div className={`app-container ${darkMode ? 'dark' : ''}`}>
+    <div className="app-container">
       {/* Header - Outside wrapper for consistent alignment */}
       <header className="header-container">
         <div className="header">

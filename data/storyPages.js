@@ -401,7 +401,7 @@ export const storyPages = [
     title: 'Aboard the Outbound Light',
     text: 'To be continued...',
     image: tbcImage,
-    mode: 'On Foot',
+    mode: 'Ship',
     crewDialogue: {
       gerald: '...',
       clovis: '...'
