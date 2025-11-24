@@ -1,14 +1,43 @@
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { hasContinueState, loadContinueState, saveContinueState } from '../utils/saveLoadUtils';
+import { useGameState } from '../contexts/GameStateContext';
 
 export function HomePage() {
   const navigate = useNavigate();
+  const [canContinue, setCanContinue] = useState(false);
+  const { loadGameState, saveGameState } = useGameState();
+
+  // Check if continue state exists on mount
+  useEffect(() => {
+    setCanContinue(hasContinueState());
+  }, []);
+
+  const handleContinue = () => {
+    const continueState = loadContinueState();
+    
+    if (continueState) {
+      // Save to in-memory context as well
+      saveGameState(continueState);
+      // Navigate to story page with loaded continue state
+      navigate('/story', { state: { loadedGame: continueState } });
+    } else {
+      // If no continue state exists, start from beginning
+      navigate('/story', { state: { reset: true } });
+    }
+  };
+
+  const handleStartNew = () => {
+    // Clear in-memory state when starting new game
+    navigate('/story', { state: { reset: true } });
+  };
 
   return (
     <div className="home-content space-y-6">
       {/* Hero Image */}
       <div className="image-container">
         <img
-          src="../assets/Blue_Nebula_Home.jpg"
+          src="../assets/Homepage.jpg"
           alt="Battle of the Cosmos"
         />
       </div>
@@ -44,14 +73,15 @@ export function HomePage() {
 
         <div className="home-buttons">
           <button 
-            onClick={() => navigate('/story', { state: { reset: true } })} 
+            onClick={handleStartNew} 
             className="btn btn-primary btn-lg"
           >
             Start Your Journey from the Beginning
           </button>
           <button 
-            onClick={() => navigate('/story')} 
+            onClick={handleContinue} 
             className="btn btn-outline btn-lg"
+            disabled={!canContinue}
           >
             Continue Your Journey
           </button>

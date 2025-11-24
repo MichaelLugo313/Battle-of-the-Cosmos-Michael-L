@@ -1,64 +1,76 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Save, Trash2 } from 'lucide-react';
+import { ConfirmDialog } from './ConfirmDialog';
+import { DeleteButton } from './DeleteButton';
+import { SaveButton } from './SaveButton';
+import { saveGameToSlot, deleteSaveSlot, getAllSaveSlots, formatSaveDate, getLocationName } from '../utils/saveLoadUtils';
+import { storyPages } from '../data/storyPages';
+import { toast } from 'sonner';
+import { useGameState } from '../contexts/GameStateContext';
 
 export function SavePage() {
-  const [saveSlots, setSaveSlots] = useState([
-    { 
-      id: 1, 
-      isEmpty: false, 
-      location: 'The Nebula Drift',
-      date: '2025-11-06 14:32',
-      health: 4,
-      hullIntegrity: 85
-    },
-    { 
-      id: 2, 
-      isEmpty: false, 
-      location: 'Unknown Planet Surface',
-      date: '2025-11-05 09:15',
-      health: 3,
-      hullIntegrity: 72
-    },
-    { id: 3, isEmpty: true },
-    { id: 4, isEmpty: true },
-    { id: 5, isEmpty: true },
-    { id: 6, isEmpty: true },
-  ]);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [slotToDelete, setSlotToDelete] = useState(null);
+  const [saveSlots, setSaveSlots] = useState([]);
+  const { loadGameState } = useGameState();
+
+  // Load save slots from localStorage on mount
+  useEffect(() => {
+    loadSaveSlots();
+  }, []);
+
+  const loadSaveSlots = () => {
+    const slots = getAllSaveSlots();
+    setSaveSlots(slots);
+  };
 
   const handleSave = (slotId) => {
-    console.log('Saving to slot:', slotId);
-    // Save game logic would go here
+    // Get current game state from in-memory context
+    const currentGameState = loadGameState();
     
-    // Generate date in format: YYYY-MM-DD HH:MM
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-    
-    setSaveSlots(saveSlots.map(slot => 
-      slot.id === slotId 
-        ? { 
-            ...slot, 
-            isEmpty: false, 
-            location: 'The Nebula Drift',
-            date: formattedDate,
-            health: 4,
-            hullIntegrity: 85
-          }
-        : slot
-    ));
+    if (!currentGameState) {
+      toast.error('No active game to save. Please start a game first.');
+      return;
+    }
+
+    try {
+      const success = saveGameToSlot(slotId, currentGameState);
+      
+      if (success) {
+        toast.success(`Game saved to Slot ${slotId}!`);
+        loadSaveSlots(); // Refresh the save slots display
+      } else {
+        toast.error('Failed to save game. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error saving game:', error);
+      toast.error('Failed to save game. Please try again.');
+    }
   };
 
   const handleDelete = (slotId) => {
-    console.log('Deleting slot:', slotId);
-    setSaveSlots(saveSlots.map(slot => 
-      slot.id === slotId 
-        ? { id: slot.id, isEmpty: true }
-        : slot
-    ));
+    setDeleteDialogOpen(true);
+    setSlotToDelete(slotId);
+  };
+
+  const confirmDelete = () => {
+    if (slotToDelete) {
+      const success = deleteSaveSlot(slotToDelete);
+      
+      if (success) {
+        toast.success(`Slot ${slotToDelete} deleted.`);
+        loadSaveSlots(); // Refresh the save slots display
+      } else {
+        toast.error('Failed to delete save. Please try again.');
+      }
+    }
+    setDeleteDialogOpen(false);
+    setSlotToDelete(null);
+  };
+
+  const cancelDelete = () => {
+    setDeleteDialogOpen(false);
+    setSlotToDelete(null);
   };
 
   return (
@@ -66,57 +78,57 @@ export function SavePage() {
       <h2>Save Game</h2>
       
       <div>
-        {saveSlots.map((slot) => (
-          <div
-            key={slot.id}
-            className="save-slot"
-          >
-            {/* Slot Number */}
-            <div className="save-slot-number">
-              Slot {slot.id}
-            </div>
+        {saveSlots.map((slot) => {
+          const location = slot.isEmpty ? null : getLocationName(slot.currentPage, storyPages);
+          const formattedDate = slot.isEmpty ? null : formatSaveDate(slot.timestamp);
+          
+          return (
+            <div
+              key={slot.id}
+              className="save-slot"
+            >
+              {/* Slot Number */}
+              <div className="save-slot-number">
+                Slot {slot.id}
+              </div>
 
-            {/* Slot Content */}
-            <div className="save-slot-content">
-              {slot.isEmpty ? (
-                <span className="save-slot-empty">Empty Slot</span>
-              ) : (
-                <div>
-                  <div className="save-slot-location">{slot.location}</div>
-                  <div className="save-slot-details">
-                    {slot.date} • Health: {slot.health}/4 • Hull: {slot.hullIntegrity}%
+              {/* Slot Content */}
+              <div className="save-slot-content">
+                {slot.isEmpty ? (
+                  <span className="save-slot-empty">Empty Slot</span>
+                ) : (
+                  <div>
+                    <div className="save-slot-location">{location}</div>
+                    <div className="save-slot-details">
+                      {formattedDate} • Health: {slot.health}/{slot.maxHealth} • Hull: {slot.hullIntegrity}%
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            {/* Action Buttons */}
-            <div className="save-slot-actions">
-              <button
-                onClick={() => handleSave(slot.id)}
-                className="btn btn-primary btn-sm"
-              >
-                <div className="gap-2">
-                  <Save className="icon-sm" />
-                  <span>Save</span>
-                </div>
-              </button>
-              
-              {!slot.isEmpty && (
-                <button
-                  onClick={() => handleDelete(slot.id)}
-                  className="btn btn-outline btn-sm"
-                >
-                  <div className="gap-2">
-                    <Trash2 className="icon-sm" />
-                    <span>Delete</span>
-                  </div>
-                </button>
-              )}
+              {/* Action Buttons */}
+              <div className="save-slot-actions">
+                <SaveButton onClick={() => handleSave(slot.id)} />
+                
+                {!slot.isEmpty && (
+                  <DeleteButton onClick={() => handleDelete(slot.id)} />
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
+
+      {deleteDialogOpen && (
+        <ConfirmDialog
+          open={deleteDialogOpen}
+          onOpenChange={setDeleteDialogOpen}
+          onConfirm={confirmDelete}
+          title="Delete Save File?"
+          description="Are you sure you want to delete this save file? This action cannot be undone."
+          icon="🗑️"
+        />
+      )}
     </div>
   );
 }
