@@ -3,7 +3,6 @@ import { Mail, MessageSquare, User } from 'lucide-react';
 export function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted');
     // Add form submission logic here
   };
 

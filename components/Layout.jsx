@@ -43,6 +43,11 @@ export function Layout({ children }) {
             <div className="decorative-line-part" />
           </div>
 
+          {/* Dark Mode Toggle */}
+          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+            {darkMode ? <Moon /> : <Sun />}
+          </button>
+
           {/* Navigation Links */}
           <nav className="nav">
             <NavLink
@@ -106,11 +111,6 @@ export function Layout({ children }) {
               }
             </NavLink>
           </nav>
-
-          {/* Dark Mode Toggle */}
-          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-            {darkMode ? <Moon /> : <Sun />}
-          </button>
         </div>
       </div>
       
