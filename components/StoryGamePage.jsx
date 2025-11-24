@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import { PlayerStats } from './PlayerStats';
 import { Inventory } from './Inventory';
 import { CrewMembers } from './CrewMembers';
@@ -17,6 +18,9 @@ export function StoryGamePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const { saveGameState, loadGameState, clearGameState } = useGameState();
+  
+  // Ref for scrolling to top
+  const pageTopRef = useRef(null);
   
   const [currentPage, setCurrentPage] = useState(1);
   const [mode, setMode] = useState('On Foot'); // 'Ship' or 'On Foot'
@@ -71,9 +75,9 @@ export function StoryGamePage() {
     setMode(currentStory.mode);
   }, [currentPage, currentStory.mode]);
 
-  // Scroll to top when page changes
+  // Scroll to top when page changes using React ref
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    pageTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [currentPage]);
 
   // Save current game state to both in-memory and localStorage
@@ -316,7 +320,7 @@ export function StoryGamePage() {
   const usableItemIds = usableItems.map(item => item.itemId);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" ref={pageTopRef}>
       {/* Player Stats - Only show when on Ship */}
       {mode === 'Ship' && (
         <PlayerStats health={hullIntegrity} maxHealth={maxHullIntegrity} />
