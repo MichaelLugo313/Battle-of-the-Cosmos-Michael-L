@@ -21,7 +21,7 @@ export function Layout({ children }) {
   return (
     <div className={`app-container ${darkMode ? 'dark' : ''}`}>
       {/* Header - Outside wrapper for consistent alignment */}
-      <div className="header-container">
+      <header className="header-container">
         <div className="header">
           <h1>
             ✦ Battle of the Cosmos ✦
@@ -103,11 +103,11 @@ export function Layout({ children }) {
             </NavLink>
           </nav>
         </div>
-      </div>
+      </header>
       
       <div className="app-wrapper">
         {/* Page Content */}
-        <div>{children}</div>
+        <main>{children}</main>
         
         {/* Footer */}
         <footer className="footer">
