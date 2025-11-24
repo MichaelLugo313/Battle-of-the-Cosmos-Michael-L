@@ -211,7 +211,7 @@ export function StoryGamePage() {
         setIsLoading(false);
         setGameOverMessage(choice.gameOverMessage || 'Your journey has come to an end.');
         setGameOverOpen(true);
-      }, 500);
+      }, 1000);
       return;
     }
 
@@ -267,7 +267,7 @@ export function StoryGamePage() {
       // Navigate to next page
       setCurrentPage(choice.nextPage);
       setIsLoading(false);
-    }, 500);
+    }, 1000);
   };
 
   // Check if player has specific crew member
