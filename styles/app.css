@@ -4,12 +4,27 @@
   box-sizing: border-box;
 }
 
+html {
+  min-height: 100vh;
+  background: #f9fafb;
+}
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
   color: #1f2937;
   background: #f9fafb;
+  min-height: 100vh;
 }
+
+/* Utility classes for flexbox and gaps */
+.flex { display: flex; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.gap-4 { gap: 1rem; }
 
 .app-container {
   min-height: 100vh;
@@ -1314,6 +1329,17 @@ body {
   }
 }
 
+/* ===========================
+   DARK MODE STYLES
+   =========================== */
+
+/* Dark mode for html and body to cover entire page */
+.dark,
+.dark html {
+  background: oklch(0.145 0 0);
+  color: oklch(0.985 0 0);
+}
+
 .dark body {
   color: oklch(0.985 0 0);
   background: oklch(0.145 0 0);
@@ -1321,6 +1347,33 @@ body {
 
 .dark .app-container {
   background: oklch(0.145 0 0);
+}
+
+/* Lighten headers in dark mode */
+.dark .header h1 {
+  color: oklch(0.95 0 0);
+}
+
+/* Lighten story page titles and section headers */
+.dark .story-content h2,
+.dark .home-welcome h2,
+.dark .news-section h2,
+.dark .save-load-page h2,
+.dark .about-content h2,
+.dark .about-section h3,
+.dark .contact-content h2,
+.dark .contact-intro h2,
+.dark .contact-info h3,
+.dark .news-item h3,
+.dark .feature-title {
+  color: oklch(0.95 0 0);
+}
+
+/* Lighten titles and labels */
+.dark .save-slot-location,
+.dark .crew-name,
+.dark .inventory-item-name {
+  color: oklch(0.95 0 0);
 }
 
 .dark .decorative-line-part {
@@ -1571,12 +1624,56 @@ body {
 }
 
 .dark .game-over-button-secondary {
-  background: oklch(0.269 0 0);
-  color: oklch(0.985 0 0);
-  border-color: oklch(0.439 0 0);
-}
-
-.dark .game-over-button-secondary:hover {
   background: oklch(0.35 0 0);
   border-color: oklch(0.5 0 0);
+}
+
+/* Dark mode for badges */
+.dark .badge-blue {
+  background: oklch(0.269 0.118 252.704);
+  color: oklch(0.8 0.15 252.704);
+}
+
+.dark .badge-purple {
+  background: oklch(0.269 0.118 308);
+  color: oklch(0.8 0.15 308);
+}
+
+.dark .badge-gray {
+  background: oklch(0.269 0 0);
+  color: oklch(0.8 0 0);
+}
+
+/* Dark mode for save slot hover effects */
+.dark .save-slot::before {
+  background: oklch(0.439 0 0);
+}
+
+.dark .save-slot:hover {
+  border-color: oklch(0.439 0 0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark .save-slot:hover::before {
+  background: #3b82f6;
+}
+
+/* Dark mode for primary button */
+.dark .btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.dark .btn-primary:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+/* Dark mode for game over title */
+.dark .game-over-title {
+  color: #ef4444;
+}
+
+/* Dark mode for inventory full title */
+.dark .inventory-full-title {
+  color: #ef4444;
 }
