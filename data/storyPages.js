@@ -143,7 +143,7 @@ export const storyPages = [
     mode: 'On Foot',
     crewDialogue: {},
     choices: [
-      { text: 'Take the elevator down to the Cantina.', nextPage: 13, healthRequirement: { operator: '=', value: 4}},
+      { text: 'Take the elevator down to the Cantina.', nextPage: 13, healthRequirement: { operator: '==', value: 4}},
       { text: 'Take the elevator down to the Cantina.', nextPage: 14, healthRequirement: { operator: '<', value: 4}}
     ]
   },
@@ -155,7 +155,7 @@ export const storyPages = [
     mode: 'On Foot',
     crewDialogue: {},
     choices: [
-      { text: 'Take the elevator down to the Cantina.', nextPage: 13, healthRequirement: { operator: '=', value: 4}},
+      { text: 'Take the elevator down to the Cantina.', nextPage: 13, healthRequirement: { operator: '==', value: 4}},
       { text: 'Take the elevator down to the Cantina.', nextPage: 14, healthRequirement: { operator: '<', value: 4}}
     ]
   },
