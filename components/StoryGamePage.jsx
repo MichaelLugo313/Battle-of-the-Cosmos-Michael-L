@@ -50,11 +50,7 @@ export function StoryGamePage() {
 
   // Item mapping - centralized to avoid duplication
   const ITEM_MAP = {
-    'gyro-pistol': 'Gyro Pistol',
-    scanner: 'Quantum Scanner',
-    'ship-keys': 'Ship Keys',
-    'ancient-data': 'Ancient Files',
-    'gateway-key': 'Gateway Key'
+    'gyro-pistol': 'Gyro Pistol'
   };
 
   // Helper function to get crew name
