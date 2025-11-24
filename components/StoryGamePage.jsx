@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 import { PlayerStats } from './PlayerStats';
 import { Inventory } from './Inventory';
 import { CrewMembers } from './CrewMembers';
@@ -291,7 +290,6 @@ export function StoryGamePage() {
       case '>': return currentHealth > value;
       case '<=': return currentHealth <= value;
       case '>=': return currentHealth >= value;
-      case '=':
       case '==': return currentHealth === value;
       default: return true;
     }
