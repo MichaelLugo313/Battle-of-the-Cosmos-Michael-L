@@ -37,7 +37,7 @@ export function HomePage() {
       {/* Hero Image */}
       <div className="image-container">
         <img
-          src="/assets/Homepage.jpg"
+          src="/images/Homepage.jpg"
           alt="Battle of the Cosmos"
         />
       </div>
