@@ -1,23 +1,23 @@
 // Define images for ease of reuse
-const apartmentImage = '../assets/Apartment.png';
-const apartmentExplosionImage = '../assets/Apartment_Explosion.png';
-const hallwayImage = '../assets/Apartment_Hallway.png';
-const hallwayWithCultistImage = '../assets/Hallway_with_Cultist.png';
-const deadCultistImage = '../assets/Dead_Cultist.png';
-const cultistFiringImage = '../assets/Cultist_Firing.png';
-const plasmaBombHallwayImage = '../assets/Plasma_Bomb_Hallway.png';
-const hallwayElevatorImage = '../assets/Hallway_Elevator.png';
-const geraldCantinaImage = '../assets/Gerald_Cantina.png';
-const infirmaryImage = '../assets/Infirmary.png';
-const orbitalElevatorImage = '../assets/Orbital_Elevator.png';
-const orbitalElevatorLobbyImage = '../assets/Orbital_Elevator_Lobby.png';
-const elevatorChamberLowImage = '../assets/Elevator_Chamber_low.png';
-const elevatorChamberHighImage = '../assets/Elevator_Chamber_high.png';
-const clovisAtopOrbitalElevatorImage = '../assets/Clovis_Atop_Orbital_Elevator.png';
-const drydockWithOLImage = '../assets/Drydock_with_OL.png';
-const tbcImage = '../assets/To_be_continued.jpg';
-const geraldAvatar = '../assets/Gerald_Face.png';
-const clovisAvatar = '../assets/Clovis_face.png';
+const apartmentImage = '/images/Apartment.png';
+const apartmentExplosionImage = '/image/Apartment_Explosion.png';
+const hallwayImage = '/image/Apartment_Hallway.png';
+const hallwayWithCultistImage = '/image/Hallway_with_Cultist.png';
+const deadCultistImage = '/image/Dead_Cultist.png';
+const cultistFiringImage = '/image/Cultist_Firing.png';
+const plasmaBombHallwayImage = '/image/Plasma_Bomb_Hallway.png';
+const hallwayElevatorImage = '/image/Hallway_Elevator.png';
+const geraldCantinaImage = '/image/Gerald_Cantina.png';
+const infirmaryImage = '/image/Infirmary.png';
+const orbitalElevatorImage = '/image/Orbital_Elevator.png';
+const orbitalElevatorLobbyImage = '/image/Orbital_Elevator_Lobby.png';
+const elevatorChamberLowImage = '/image/Elevator_Chamber_low.png';
+const elevatorChamberHighImage = '/image/Elevator_Chamber_high.png';
+const clovisAtopOrbitalElevatorImage = '/image/Clovis_Atop_Orbital_Elevator.png';
+const drydockWithOLImage = '/image/Drydock_with_OL.png';
+const OL_Bridge_with_Clovis_and_Gerald = '/image/OL_Bridge_with_Clovis_and_Gerald.png';
+const geraldAvatar = '/image/Gerald_Face.png';
+const clovisAvatar = '/image/Clovis_face.png';
 
 export const storyPages = [
   {
@@ -400,7 +400,7 @@ export const storyPages = [
     id: 28,
     title: 'Aboard the Outbound Light',
     text: 'To be continued...',
-    image: tbcImage,
+    image: OL_Bridge_with_Clovis_and_Gerald,
     mode: 'Ship',
     crewDialogue: {
       gerald: '...',
