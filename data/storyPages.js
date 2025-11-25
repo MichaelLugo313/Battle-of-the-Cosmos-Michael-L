@@ -1,23 +1,23 @@
 // Define images for ease of reuse
-const apartmentImage = '/images/apartment.png';
-const apartmentExplosionImage = '/image/Apartment_Explosion.png';
-const hallwayImage = '/image/apartmenthallway.png';
-const hallwayWithCultistImage = '/image/Hallway_with_Cultist.png';
-const deadCultistImage = '/image/Dead_Cultist.png';
-const cultistFiringImage = '/image/Cultist_Firing.png';
-const plasmaBombHallwayImage = '/image/Plasma_Bomb_Hallway.png';
-const hallwayElevatorImage = '/image/Hallway_Elevator.png';
-const geraldCantinaImage = '/image/Gerald_Cantina.png';
-const infirmaryImage = '/image/Infirmary.png';
-const orbitalElevatorImage = '/image/Orbital_Elevator.png';
-const orbitalElevatorLobbyImage = '/image/Orbital_Elevator_Lobby.png';
-const elevatorChamberLowImage = '/image/Elevator_Chamber_low.png';
-const elevatorChamberHighImage = '/image/Elevator_Chamber_high.png';
-const clovisAtopOrbitalElevatorImage = '/image/Clovis_Atop_Orbital_Elevator.png';
-const drydockWithOLImage = '/image/Drydock_with_OL.png';
-const OL_Bridge_with_Clovis_and_Gerald = '/image/OL_Bridge_with_Clovis_and_Gerald.png';
-const geraldAvatar = '/image/Gerald_Face.png';
-const clovisAvatar = '/image/Clovis_face.png';
+const apartmentImage = '/images/Apartment.png';
+const apartmentExplosionImage = '/images/Apartment_Explosion.png';
+const hallwayImage = '/images/Apartment_Hallway.png';
+const hallwayWithCultistImage = '/images/Hallway_with_Cultist.png';
+const deadCultistImage = '/images/Dead_Cultist.png';
+const cultistFiringImage = '/images/Cultist_Firing.png';
+const plasmaBombHallwayImage = '/images/Plasma_Bomb_Hallway.png';
+const hallwayElevatorImage = '/images/Hallway_Elevator.png';
+const geraldCantinaImage = '/images/Gerald_Cantina.png';
+const infirmaryImage = '/images/Infirmary.png';
+const orbitalElevatorImage = '/images/Orbital_Elevator.png';
+const orbitalElevatorLobbyImage = '/images/Orbital_Elevator_Lobby.png';
+const elevatorChamberLowImage = '/images/Elevator_Chamber_low.png';
+const elevatorChamberHighImage = '/images/Elevator_Chamber_high.png';
+const clovisAtopOrbitalElevatorImage = '/images/Clovis_Atop_Orbital_Elevator.png';
+const drydockWithOLImage = '/images/Drydock_with_OL.png';
+const OL_Bridge_with_Clovis_and_Gerald = '/images/OL_Bridge_with_Clovis_and_Gerald.png';
+const geraldAvatar = '/images/Gerald_Face.png';
+const clovisAvatar = '/images/Clovis_face.png';
 
 export const storyPages = [
   {
