@@ -1,7 +1,7 @@
 // Define images for ease of reuse
-const apartmentImage = '/images/Apartment.png';
+const apartmentImage = '/images/apartment.png';
 const apartmentExplosionImage = '/image/Apartment_Explosion.png';
-const hallwayImage = '/image/Apartment_Hallway.png';
+const hallwayImage = '/image/apartmenthallway.png';
 const hallwayWithCultistImage = '/image/Hallway_with_Cultist.png';
 const deadCultistImage = '/image/Dead_Cultist.png';
 const cultistFiringImage = '/image/Cultist_Firing.png';
